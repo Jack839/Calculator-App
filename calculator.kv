@@ -2,7 +2,8 @@
 <CalcButton@Button>:
     #Custom Button Design
     font_size: 70
-    background_normal: "res/calc_button.png"
+    background_normal: ""
+    background_color: 0/255.0,175/255.0,102/255.0,1
 
 <CalcLayout>:
     #Main App Layout
@@ -16,6 +17,7 @@
             text: cal.data_text
             color: 0,0,0,1
             font_size: 100
+            multiline: True
             size_hint_y: 0.4
     GridLayout:
         size_hint_y: 0.6
