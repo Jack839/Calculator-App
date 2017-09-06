@@ -2,11 +2,12 @@ import kivy
 
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
+from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.core.window import Window
 
-class CalcLayout(GridLayout):
+class CalcLayout(FloatLayout):
     Window.clearcolor = (1, 1, 1, 1)
     def valEnter(self,inputVal):
         if inputVal=="":
