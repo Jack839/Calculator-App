@@ -1,10 +1,11 @@
 import kivy
+import __future__
 
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.label import Label
+from kivy.uix.button import Button
 from kivy.core.window import Window
 
 class CalcLayout(FloatLayout):
@@ -13,18 +14,12 @@ class CalcLayout(FloatLayout):
         if inputVal=="":
             self.data.text=""
         elif self.data.text=="Error":
-            if inputVal=="+" or inputVal=="-" or inputVal=="*" or inputVal=="/":
-                self.data.text=inputVal
-            else:
-                self.data.text=inputVal+".0 "
+            self.data.text=inputVal
         else:
-            if inputVal=="+" or inputVal=="-" or inputVal=="*" or inputVal=="/":
-                self.data.text+=inputVal+" "
-            else:
-                self.data.text+=inputVal+".0 "
+            self.data.text+=inputVal
     def calc(self,valToEval):
         try:
-            self.data.text=str(eval(valToEval))+" "
+            self.data.text=str(eval(compile(valToEval, '<string>', 'eval', __future__.division.compiler_flag)))
         except:
             self.data.text="Error"
 class CalculatorApp(App):
