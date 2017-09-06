@@ -10,7 +10,7 @@ package.name = Calculator
 package.domain = org.jack.calckivy
 
 # (str) Source code where the main.py live
-source.dir = /home/jack/Desktop/Kivy-Projects/Calculator/
+source.dir = /home/jack/Desktop/Kivy-Projects/Calculator-App/
 
 # (list) Source files to include (let empty to include all the files)
 source.include_exts = py,png,jpg,kv,atlas
