@@ -8,13 +8,15 @@
     #Main App Layout
     data: input_data
     id: cal
-    BoxLayout:
-        TextInput:
+    AnchorLayout:
+        anchor_y: "top"
+        anchor_x: "center"
+        Label:
             id: input_data
-            text: ""
-            font_size: 70
-            multiline: False            
-            pos_hint_y: {"top": 1}
+            text: cal.data_text
+            color: 0,0,0,1
+            font_size: 100
+            size_hint_y: 0.4
     GridLayout:
         size_hint_y: 0.6
         rows: 4
