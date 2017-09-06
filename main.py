@@ -13,7 +13,10 @@ class CalcLayout(FloatLayout):
         if inputVal=="":
             self.data.text=""
         elif self.data.text=="Error":
-            self.data.text=inputVal+".0 "
+            if inputVal=="+" or inputVal=="-" or inputVal=="*" or inputVal=="/":
+                self.data.text=inputVal
+            else:
+                self.data.text=inputVal+".0 "
         else:
             if inputVal=="+" or inputVal=="-" or inputVal=="*" or inputVal=="/":
                 self.data.text+=inputVal+" "
