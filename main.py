@@ -10,13 +10,13 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
 from kivy.properties import StringProperty
-
+    
 class CalcLayout(FloatLayout):
     Window.clearcolor = (1, 1, 1, 1)
     data_text=StringProperty()
     def valEnter(self,inputVal):
         if inputVal=="":
-            self.data_text=""
+            self.data_text=self.data_text[0:-1]
         elif self.data_text=="Error":
             self.data_text=inputVal
         else:
