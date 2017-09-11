@@ -1,5 +1,6 @@
 #Kivy Imports
 from kivy.app import App
+from kivy.lang import Builder
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
@@ -11,6 +12,11 @@ from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
 from kivy.properties import StringProperty
 from kivy.uix.dropdown import DropDown
+from kivy.uix.popup import Popup
+from kivy.uix.widget import Widget
+from kivy.core.window import Window
+
+#Window.size = (570, 720)
 
 #Other Imports
 import __future__
@@ -31,6 +37,9 @@ class CalcLayout(FloatLayout):
             self.data_text=str(eval(compile(valToEval, '<string>', 'eval', __future__.division.compiler_flag)))
         except:
             self.data_text="Error"
+            
+buildKV = Builder.load_file("calculator.kv")
+
 class CalculatorApp(App):
     def build(self):
         return CalcLayout()
