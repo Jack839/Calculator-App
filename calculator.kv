@@ -15,12 +15,20 @@
     id: cal
     Popup:
         id: pop
-        title: "Info"
         size_hint_y: 0.318
+        separator_height: 0
         pos_hint: {'right': 1, 'top': 0.3}
-        CalcButton:
-            text: "Popup"
-            on_release: cal.valEnter(self.text)
+        canvas:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Label:
+            pos: root.pos
+            size: self.size
+            text: "Hello"
+            color: 1,1,1,1
     BoxLayout:
         padding: 0,10,0,0
         pos_hint: {'top': 1}

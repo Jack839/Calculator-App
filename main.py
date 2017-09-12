@@ -15,6 +15,8 @@ from kivy.uix.dropdown import DropDown
 from kivy.uix.popup import Popup
 from kivy.uix.widget import Widget
 from kivy.core.window import Window
+from kivy.graphics.context_instructions import Color
+from kivy.graphics.vertex_instructions import Rectangle
 
 #Window.size = (570, 720)
 
@@ -31,7 +33,14 @@ class CalcLayout(FloatLayout):
         elif self.data_text=="Error":
             self.data_text=inputVal
         else:
-            self.data_text+=inputVal
+            if inputVal=="*" or inputVal=="/":
+                if self.data_text !="" :
+                    if self.data_text[len(self.data_text)-1]=="*" or self.data_text[len(self.data_text)-1]=="/" or self.data_text[len(self.data_text)-1]=="+" or self.data_text[len(self.data_text)-1]=="-":
+                        self.data_text=self.data_text
+                    else:
+                        self.data_text+=inputVal
+            else:
+                self.data_text+=inputVal
     def calc(self,valToEval):
         try:
             self.data_text=str(eval(compile(valToEval, '<string>', 'eval', __future__.division.compiler_flag)))
