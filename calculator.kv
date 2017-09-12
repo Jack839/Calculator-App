@@ -13,22 +13,16 @@
 <CalcLayout>:
     #Main App Layout
     id: cal
-    Popup:
+    ModalView:
         id: pop
+        background: "res/white_back.png"
         size_hint_y: 0.318
         separator_height: 0
         pos_hint: {'right': 1, 'top': 0.3}
-        canvas:
-            Color:
-                rgba: 1,1,1,1
-            Rectangle:
-                pos: self.pos
-                size: self.size
         Label:
-            pos: root.pos
-            size: self.size
             text: "Hello"
-            color: 1,1,1,1
+            color: 116/255.0,116/255.0,116/255.0,1
+            font_size: 50
     BoxLayout:
         padding: 0,10,0,0
         pos_hint: {'top': 1}

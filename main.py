@@ -14,6 +14,7 @@ from kivy.properties import StringProperty
 from kivy.uix.dropdown import DropDown
 from kivy.uix.popup import Popup
 from kivy.uix.widget import Widget
+from kivy.uix.modalview import ModalView
 from kivy.core.window import Window
 from kivy.graphics.context_instructions import Color
 from kivy.graphics.vertex_instructions import Rectangle
@@ -46,8 +47,8 @@ class CalcLayout(FloatLayout):
             self.data_text=str(eval(compile(valToEval, '<string>', 'eval', __future__.division.compiler_flag)))
         except:
             self.data_text="Error"
-            
-buildKV = Builder.load_file("calculator.kv")
+
+#buildKV = Builder.load_file("calculator.kv")
 
 class CalculatorApp(App):
     def build(self):
