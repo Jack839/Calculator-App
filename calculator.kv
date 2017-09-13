@@ -1,4 +1,4 @@
-#: import pi math.pi
+#: import math math
 
 <CalcButton@Button>:
     #Custom Button Design 1
@@ -39,6 +39,7 @@
         Label:
             size_hint_x: 0.7
     PageLayout:
+        swipe_threshold: 0.000001
         GridLayout:
             size_hint_y: 0.9
             rows: 5
@@ -116,21 +117,21 @@
                 size_hint_y: 0.5
                 CalcButton2:
                     text: "    sin"
-                    on_release: cal.valEnter(self.text[4:])
+                    on_release: cal.valEnter(self.text[4:]+"(")
                 CalcButton2:
                     text: "    cos"
-                    on_release: cal.valEnter(self.text[4:])
+                    on_release: cal.valEnter(self.text[4:]+"(")
                 CalcButton2:
                     text: "    tan"
-                    on_release: cal.valEnter(self.text[4:])
+                    on_release: cal.valEnter(self.text[4:]+"(")
             BoxLayout:
                 size_hint_y: 0.5
                 CalcButton2:
                     text: "    ln"
-                    on_release: cal.valEnter(self.text[4:])
+                    on_release: cal.valEnter(self.text[4:]+"(")
                 CalcButton2:
                     text: "    log"
-                    on_release: cal.valEnter(self.text[4:])
+                    on_release: cal.valEnter(self.text[4:]+"(")
                 CalcButton2:
                     text: "    !"
                     on_release: cal.valEnter(self.text[4:])
@@ -138,10 +139,10 @@
                 size_hint_y: 0.5
                 CalcButton2:
                     text: "    π"
-                    on_release: cal.valEnter(str(pi))
+                    on_release: cal.valEnter(str(math.pi))
                 CalcButton2:
                     text: "    e"
-                    on_release: cal.valEnter(self.text[4:])
+                    on_release: cal.valEnter(str(math.exp(1)))
                 CalcButton2:
                     text: "    ^"
                     on_release: cal.valEnter("**")

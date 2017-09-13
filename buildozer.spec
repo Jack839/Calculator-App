@@ -28,7 +28,7 @@ source.include_patterns = res/*.png
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 1.1.0
+version = 1.8.0
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
