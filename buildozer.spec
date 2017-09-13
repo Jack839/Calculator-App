@@ -28,7 +28,7 @@ source.include_patterns = res/*.png
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 1.8.0
+version = 2.1.0
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
@@ -36,7 +36,7 @@ version = 1.8.0
 
 # (list) Application requirements
 # comma seperated e.g. requirements = sqlite3,kivy
-requirements = kivy
+requirements = android ,kivy
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -62,10 +62,10 @@ orientation = portrait
 #
 
 #
-# author = © Copyright Info
+author = Jack
 
 # change the major version of python used by the app
-osx.python_version = 3
+osx.python_version = 2.7
 
 # Kivy version to use
 osx.kivy_version = 1.9.1
@@ -85,7 +85,7 @@ fullscreen = 0
 #android.presplash_color = #FFFFFF
 
 # (list) Permissions
-#android.permissions = INTERNET
+android.permissions = INTERNET
 
 # (int) Android API to use
 #android.api = 19

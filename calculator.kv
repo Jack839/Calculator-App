@@ -5,11 +5,19 @@
     font_size: 70
     background_normal: ""
     background_color: 63/255.0,81/255.0,181/255.0,1
+    font_name: "res/font_roboto_thin.ttf"
 <CalcButton2@Button>:
     #Custom Button Design 2
     font_size: 70
     background_normal: ""
-    background_color: 136/255.0,14/255.0,79/255.0,1
+    background_color: 173/255.0,20/255.0,87/255.0,1
+    font_name: "res/font_roboto_thin.ttf"
+<CalcButton3@Button>:
+    #Custom Button Design 3
+    font_size: 70
+    background_normal: ""
+    background_color: 194/255.0,24/255.0,91/255.0,1
+    font_name: "res/font_roboto_thin.ttf"
 <CalcLayout>:
     #Main App Layout
     id: cal
@@ -19,16 +27,36 @@
         size_hint_y: 0.318
         separator_height: 0
         pos_hint: {'right': 1, 'top': 0.3}
-        Label:
-            text: "Hello"
-            color: 116/255.0,116/255.0,116/255.0,1
-            font_size: 50
+        BoxLayout:
+            orientation: "vertical"
+            BoxLayout:
+                padding: 20
+                Label:
+                    text: "\nApp Made By -Jack Using"
+                    font_size: 70
+                    font_name: "res/font_roboto_thin.ttf"
+                    color: 116/255.0,116/255.0,116/255.0,1
+                Button:
+                    size_hint: 0.24,0.81
+                    background_normal: "res/kivy_logo.png"
+                    background_down: "res/kivy_logo.png"
+                    on_release: cal.internetActivity("https://kivy.org")
+            Button:
+                text: "[u]Source Code - GitHub[/u]"
+                font_size: 70
+                markup: True
+                font_name: "res/font_roboto_thin.ttf"
+                color: 81/255.0,148/255.0,1,1
+                background_normal: ""
+                background_color: 1,1,1,1
+                on_release: cal.internetActivity("https://github.com/Jack839/Calculator-App")
     BoxLayout:
         padding: 0,10,0,0
         pos_hint: {'top': 1}
         size_hint_y: 0.07
         Button:
             text: " Info"
+            font_name: "res/font_roboto_thin.ttf"
             color: 116/255.0,116/255.0,116/255.0,1
             font_size: 50
             background_normal: ""
@@ -39,74 +67,86 @@
         Label:
             size_hint_x: 0.7
     PageLayout:
+        border: "30dp"
         swipe_threshold: 0.000001
         GridLayout:
-            size_hint_y: 0.9
-            rows: 5
-            AnchorLayout:
-                anchor_y: "top"
-                anchor_x: "right"
+            rows: 2
+            BoxLayout:
+                pos_hint: {"top":1}
+                size_hint_y:0.5
                 Label:
                     id: input_data
+                    font_name: "res/font_roboto_thin.ttf"
                     text: cal.data_text
                     color: 116/255.0,116/255.0,116/255.0,1
                     font_size: 100
-            BoxLayout:
-                size_hint_y: 0.5
-                CalcButton:
-                    text: "7"
-                    on_release: cal.valEnter(self.text)
-                CalcButton:
-                    text: "8"
-                    on_release: cal.valEnter(self.text)
-                CalcButton:
-                    text: "9"
-                    on_release: cal.valEnter(self.text)
-                CalcButton:
-                    text: "+"
-                    on_release: cal.valEnter(self.text)
-            BoxLayout:
-                size_hint_y: 0.5
-                CalcButton:
-                    text: "4"
-                    on_release: cal.valEnter(self.text)
-                CalcButton:
-                    text: "5"
-                    on_release: cal.valEnter(self.text)
-                CalcButton:
-                    text: "6"
-                    on_release: cal.valEnter(self.text)
-                CalcButton:
-                    text: "-"
-                    on_release: cal.valEnter(self.text)
-            BoxLayout:
-                size_hint_y: 0.5
-                CalcButton:
-                    text: "1"
-                    on_release: cal.valEnter(self.text)
-                CalcButton:
-                    text: "2"
-                    on_release: cal.valEnter(self.text)
-                CalcButton:
-                    text: "3"
-                    on_release: cal.valEnter(self.text)
-                CalcButton:
-                    text: "*"
-                    on_release: cal.valEnter(self.text)
-            BoxLayout:
-                size_hint_y: 0.5
-                CalcButton:
-                    text: "Del"
-                    on_release: cal.valEnter("")
-                CalcButton:
-                    text: "0"
-                    on_release: cal.valEnter(self.text)
-                CalcButton:
-                    text: "="
-                    on_release: cal.calc(input_data.text)
-                CalcButton:
-                    text: "/"
-                    on_release: cal.valEnter(self.text)
+            GridLayout:
+                cols: 2
+                GridLayout:
+                    rows: 5
+                    BoxLayout:
+                        size_hint_y: 0.5
+                        CalcButton:
+                            text: "7"
+                            on_release: cal.valEnter(self.text)
+                        CalcButton:
+                            text: "8"
+                            on_release: cal.valEnter(self.text)
+                        CalcButton:
+                            text: "9"
+                            on_release: cal.valEnter(self.text)
+                    BoxLayout:
+                        size_hint_y: 0.5
+                        CalcButton:
+                            text: "4"
+                            on_release: cal.valEnter(self.text)
+                        CalcButton:
+                            text: "5"
+                            on_release: cal.valEnter(self.text)
+                        CalcButton:
+                            text: "6"
+                            on_release: cal.valEnter(self.text)
+                    BoxLayout:
+                        size_hint_y: 0.5
+                        CalcButton:
+                            text: "1"
+                            on_release: cal.valEnter(self.text)
+                        CalcButton:
+                            text: "2"
+                            on_release: cal.valEnter(self.text)
+                        CalcButton:
+                            text: "3"
+                            on_release: cal.valEnter(self.text)
+                    BoxLayout:
+                        size_hint_y: 0.5
+                        CalcButton:
+                            text: "."
+                            on_release: cal.valEnter(self.text)
+                        CalcButton:
+                            text: "0"
+                            on_release: cal.valEnter(self.text)
+                        CalcButton:
+                            text: "="
+                            on_release: cal.calc(input_data.text)
+                BoxLayout:
+                    orientation: "vertical"
+                    size_hint_y: 0.5
+                    size_hint_x:0.25
+                    CalcButton3:
+                        text: "DEL"
+                        on_release: cal.valEnter("")
+                    CalcButton3:
+                        text: "+"
+                        on_release: cal.valEnter(self.text)
+                    CalcButton3:
+                        text: "-"
+                        on_release: cal.valEnter(self.text)
+                    CalcButton3:
+                        text: "*"
+                        on_release: cal.valEnter(self.text)
+                    CalcButton3:
+                        text: "/"
+                        on_release: cal.valEnter(self.text)
         GridLayout:
             size_hint_y: 0.9
             rows: 5

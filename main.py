@@ -24,6 +24,8 @@ from kivy.graphics.vertex_instructions import Rectangle
 #Other Imports
 import __future__
 import math
+#import android
+import webbrowser
 
 def fact(x):
     n=1
@@ -51,32 +53,35 @@ class CalcLayout(FloatLayout):
                         self.data_text+=inputVal
             else:
                 self.data_text+=inputVal
+    def internetActivity(self,Url):
+        webbrowser.open(Url)
     def calc(self,valToEval):
-        try:
-            a=True
-            while a:
-                if valToEval.find("sin(")!=-1:
-                    valToEval=valToEval[:valToEval.find("sin(")]+str(math.sin(math.radians(int(valToEval[valToEval.find("sin(")+4:(valToEval.find("sin(")+4+valToEval[valToEval.find("sin(")+4:].find(")"))]))))+valToEval[(valToEval.find("sin(")+4+valToEval[valToEval.find("sin(")+4:].find(")"))+1:]
-                elif valToEval.find("cos(")!=-1:
-                    valToEval=valToEval[:valToEval.find("cos(")]+str(math.cos(math.radians(int(valToEval[valToEval.find("cos(")+4:(valToEval.find("cos(")+4+valToEval[valToEval.find("cos(")+4:].find(")"))]))))+valToEval[(valToEval.find("cos(")+4+valToEval[valToEval.find("cos(")+4:].find(")"))+1:]
-                elif valToEval.find("tan(")!=-1:
-                    valToEval=valToEval[:valToEval.find("tan(")]+str(math.tan(math.radians(int(valToEval[valToEval.find("tan(")+4:(valToEval.find("tan(")+4+valToEval[valToEval.find("tan(")+4:].find(")"))]))))+valToEval[(valToEval.find("tan(")+4+valToEval[valToEval.find("tan(")+4:].find(")"))+1:]
-                elif valToEval.find("log(")!=-1:
-                    valToEval=valToEval[:valToEval.find("log(")]+str(math.log10(int(valToEval[valToEval.find("log(")+4:(valToEval.find("log(")+4+valToEval[valToEval.find("log(")+4:].find(")"))])))+valToEval[(valToEval.find("log(")+4+valToEval[valToEval.find("log(")+4:].find(")"))+1:]
-                elif valToEval.find("ln(")!=-1:
-                    valToEval=valToEval[:valToEval.find("ln(")]+str(math.log(int(valToEval[valToEval.find("ln(")+3:(valToEval.find("ln(")+3+valToEval[valToEval.find("ln(")+3:].find(")"))])))+valToEval[(valToEval.find("ln(")+4+valToEval[valToEval.find("ln(")+3:].find(")"))+1:]
-                elif valToEval.find("!")!=-1:
-                    for op in range(valToEval.find("!"),-1,-1):
-                        if valToEval[op]=="*" or valToEval[op]=="/" or valToEval[op]=="+" or valToEval[op]=="-":
-                            valToEval=valToEval[:op+1]+fact(int(valToEval[op+1:valToEval.find("!")]))+valToEval[valToEval.find("!")+1:]
-                            break
-                        elif op==0:
-                            valToEval=fact(int(valToEval[0:valToEval.find("!")]))+valToEval[valToEval.find("!")+1:]
-                else:
-                    a=False
-            self.data_text=str(eval(compile(valToEval, '<string>', 'eval', __future__.division.compiler_flag)))
-        except:
-            self.data_text="Error"
+        if len(valToEval)>0:
+            try:
+                a=True
+                while a:
+                    if valToEval.find("sin(")!=-1:
+                        valToEval=valToEval[:valToEval.find("sin(")]+str(math.sin(math.radians(int(valToEval[valToEval.find("sin(")+4:(valToEval.find("sin(")+4+valToEval[valToEval.find("sin(")+4:].find(")"))]))))+valToEval[(valToEval.find("sin(")+4+valToEval[valToEval.find("sin(")+4:].find(")"))+1:]
+                    elif valToEval.find("cos(")!=-1:
+                        valToEval=valToEval[:valToEval.find("cos(")]+str(math.cos(math.radians(int(valToEval[valToEval.find("cos(")+4:(valToEval.find("cos(")+4+valToEval[valToEval.find("cos(")+4:].find(")"))]))))+valToEval[(valToEval.find("cos(")+4+valToEval[valToEval.find("cos(")+4:].find(")"))+1:]
+                    elif valToEval.find("tan(")!=-1:
+                        valToEval=valToEval[:valToEval.find("tan(")]+str(math.tan(math.radians(int(valToEval[valToEval.find("tan(")+4:(valToEval.find("tan(")+4+valToEval[valToEval.find("tan(")+4:].find(")"))]))))+valToEval[(valToEval.find("tan(")+4+valToEval[valToEval.find("tan(")+4:].find(")"))+1:]
+                    elif valToEval.find("log(")!=-1:
+                        valToEval=valToEval[:valToEval.find("log(")]+str(math.log10(int(valToEval[valToEval.find("log(")+4:(valToEval.find("log(")+4+valToEval[valToEval.find("log(")+4:].find(")"))])))+valToEval[(valToEval.find("log(")+4+valToEval[valToEval.find("log(")+4:].find(")"))+1:]
+                    elif valToEval.find("ln(")!=-1:
+                        valToEval=valToEval[:valToEval.find("ln(")]+str(math.log(int(valToEval[valToEval.find("ln(")+3:(valToEval.find("ln(")+3+valToEval[valToEval.find("ln(")+3:].find(")"))])))+valToEval[(valToEval.find("ln(")+3+valToEval[valToEval.find("ln(")+3:].find(")"))+1:]
+                    elif valToEval.find("!")!=-1:
+                        for op in range(valToEval.find("!"),-1,-1):
+                            if valToEval[op]=="*" or valToEval[op]=="/" or valToEval[op]=="+" or valToEval[op]=="-":
+                                valToEval=valToEval[:op+1]+fact(int(valToEval[op+1:valToEval.find("!")]))+valToEval[valToEval.find("!")+1:]
+                                break
+                            elif op==0:
+                                valToEval=fact(int(valToEval[0:valToEval.find("!")]))+valToEval[valToEval.find("!")+1:]
+                    else:
+                        a=False
+                self.data_text=str(eval(compile(valToEval, '<string>', 'eval', __future__.division.compiler_flag)))
+            except:
+                self.data_text="Error"
 
 #buildKV = Builder.load_file("calculator.kv")
 
