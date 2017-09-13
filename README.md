@@ -1,6 +1,8 @@
 # Calculator-App
 Calculator App made using kivy for practice.
 
-Note: -App Layout is made to work perfect on android only.
+Note: 
+
+      -App Layout is made to work perfect on android only.
 
       -Most of icons are taken from https://icons8.com.
