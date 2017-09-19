@@ -4,7 +4,6 @@
 
 ChangeLog(v2.3):
     1)Updated Version To v2.3.
-    2)Updated border of advanced page calculator indicator.
+    2)Updated PageLaout border.
     3)Added Scrollable Label.
     4)OTA Updated Enabled
-    
