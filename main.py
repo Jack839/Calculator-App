@@ -63,7 +63,6 @@ class CalcLayout(FloatLayout):
         try:
             changeLog=open("ota.txt","r+")
             file_data=changeLog.read()
-            print file_data[-2]
             changeLog.close()
             ota_check=urllib2.urlopen("https://raw.githubusercontent.com/Jack839/Calculator-App/master/ota.txt")
             read_data=ota_check.read()
@@ -72,7 +71,7 @@ class CalcLayout(FloatLayout):
                 ota.write(read_data)
                 ota.close()
                 self.title_text="Update Available: v"+read_data[1:4]
-                self.update_text=read_data[6:-1]
+                self.update_text=read_data[6:-3]
                 self.ids.updatePop.open()
             elif int(file_data[-2])==0:
                 file_data=file_data[:-2]+str(int(file_data[-2])+1)+"\n"
