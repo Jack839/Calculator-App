@@ -7,3 +7,6 @@ ChangeLog(v2.3):
     2)Updated PageLaout border.
     3)Added Scrollable Label.
     4)OTA Updated Enabled
+    5)Added LongClick For ClearAll.
+
+#1

@@ -13,7 +13,7 @@ package.domain = org.jack.calckivy
 source.dir = /home/jack/Desktop/Kivy-Projects/Calculator-App/
 
 # (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,jpg,kv,atlas,ttf
+source.include_exts = py,png,jpg,kv,atlas,ttf,txt
 
 # (list) List of inclusions using pattern matching
 source.include_patterns = res/*.png
@@ -28,7 +28,7 @@ source.include_patterns = res/*.png
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 2.1.1
+version = 2.3
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
@@ -36,7 +36,7 @@ version = 2.1.1
 
 # (list) Application requirements
 # comma seperated e.g. requirements = sqlite3,kivy
-requirements = android ,kivy
+requirements = android,openssl,pyopenssl,kivy
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
