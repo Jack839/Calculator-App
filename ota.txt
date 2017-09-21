@@ -1,12 +1,71 @@
-#2.3
+#2.4
 
 [u][color=5194FF][ref=https://drive.google.com/open?id=0Bzs0vaxTnYwEMml1Rm9DeVY5ZVk]Download Folder[/ref][/color][/u]
-    
+
+ChangeLog(v2.4):
+    1)Updated Version To v2.4.
+    2)Perfected Adv. Calculator.
+    3)Updated ota.txt.
+    4)Fixed writing data in ota.txt.
+
 ChangeLog(v2.3):
     1)Updated Version To v2.3.
     2)Updated PageLaout border.
     3)Added Scrollable Label.
     4)OTA Updated Enabled
     5)Added LongClick For ClearAll.
+
+ChangeLog(v2.1.1):
+    1)Updated Version To v2.1.1.
+    2)Added Button Background.
+    3)Sync FontSize with window's width size.
+    4)Fixed zeroError of stupid eval function.
+    5)Changed int to float.
+
+ChangeLog(v2.1):
+    1)Updated Version To v2.1.
+    2)Added message with help of popup.
+    3)Removed "√" and custom font.
+    4)Added Modulus Function(remainder).
+    5)Changed on_press to on_release
+    6)Added ModalView.
+    7)Added Canvas on popup.
+    8)Fixed calculator basic function.
+    9)Added Activity To Open Web Browser.
+    10)Included Android module.
+    11)Added Custom Font.
+    12)Added Correct Permission.
+    13)Layout Updated.
+    14)Added Decimal Button.
+    15)Finialized ModelView With AppInfo.
+
+ChangeLog(v1.8):
+    1)Updated Version To v1.8.
+    2)Added PageLayout for adv. calculator.
+    3)Removed 3Dot Menu.
+    4)Added Info button.
+    5)Removed all unnecessary pngs.
+    6)Added custom font for "√" sign(UTF-8).
+    7)Updated colours.
+
+ChangeLog(v1.1):
+    1)Updated Version To v1.1.
+    2)Changed button colour.
+    3)Pushed label in GridLayout.
+    4)Added 3 dot menu icon.
+    5)Removed ClearAll button.
+    6)Added single letter Del button.
+    7)Added colour to button.
+    8)Changed Splash Screen.
+
+ChangeLog(v1.0.1):
+    1)Updated Version To v1.0.1.
+    2)Updated layout to anchor.
+    3)Switched to Label for readonly.
+    4)Switched to material design.
+    5)Removed unnecessary importing.
+
+ChangeLog(v1.0):
+    1)Initial BringUp.
 
 #1
