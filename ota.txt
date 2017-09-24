@@ -1,6 +1,13 @@
-#2.4
+#2.5
 
 [u][color=5194FF][ref=https://drive.google.com/open?id=0Bzs0vaxTnYwEMml1Rm9DeVY5ZVk]Download Folder[/ref][/color][/u]
+
+ChangeLog(v2.5):
+    1)Updated Version To v2.5.
+    2)Perfected Whole Calculator(I guess).
+    3)Updated key layout height.
+    4)Updated pageLayout border.
+    5)Fixed OTA popup issue.
 
 ChangeLog(v2.4):
     1)Updated Version To v2.4.

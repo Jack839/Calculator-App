@@ -24,62 +24,36 @@ from kivy.graphics.vertex_instructions import Rectangle
 
 #Other Imports
 import __future__
-import math
+from math import *
 #import android
 import urllib2
 import webbrowser
 import time
 
-__version__=2.4
+__version__=2.5
 
 def evalFunction(valToEval):
     b=""
     k="+"
-    for j in range(0,5):
+    for j in range(0,6):
         for i in range(0,len(valToEval.split(k))):
             if i==len(valToEval.split(k))-1:
                 b+=valToEval.split(k)[i].lstrip("0")
             else:
-                b+=valToEval.split(k)[i].lstrip("0")+k
+                b+=valToEval.split(k)[i].lstrip("0")+k        
         valToEval,b=b,""
-        if j==0 and valToEval.find("-")!=-1:k="-"
+        if j==0 and valToEval.find("-")!=-1:k="-"        
         elif j==1 and valToEval.find("*")!=-1:k="*"
         elif j==2 and valToEval.find("/")!=-1:k="/"
         elif j==3 and valToEval.find("%")!=-1:k="%"
-    return str(eval(compile(valToEval, '<string>', 'eval', __future__.division.compiler_flag)))
+        elif j==4 and valToEval.find("(")!=-1:k="("
+    return str(eval(compile(valToEval, '<string>', 'eval', __future__.division.compiler_flag),{'sin': sin,'cos': cos,'tan': tan,'log': log10,'ln': log,'pi': pi}))
+
 def fact(x):
     n=1
     for i in range(x,0,-1):
        n=n*i
     return str(n)
-
-def funcInFunc(valToEval):
-    if valToEval.find("sin(")!=-1 or valToEval.find("cos(")!=-1 or valToEval.find("log(")!=-1 or valToEval.find("ln(")!=-1 or valToEval.find("!")!=-1:
-        bool1=True
-        valToEval=valToEval+")"
-        while bool1:
-            if valToEval.find("sin(")!=-1:
-                valToEval=valToEval[:valToEval.find("sin(")]+str(math.sin(math.radians(float(evalFunction(funcInFunc(valToEval[valToEval.find("sin(")+4:(valToEval.find("sin(")+4+valToEval[valToEval.find("sin(")+4:].find(")"))]))))))+valToEval[(valToEval.find("sin(")+4+valToEval[valToEval.find("sin(")+4:].find(")"))+1:]
-            elif valToEval.find("cos(")!=-1:
-                valToEval=valToEval[:valToEval.find("cos(")]+str(math.cos(math.radians(float(evalFunction(funcInFunc(valToEval[valToEval.find("cos(")+4:(valToEval.find("cos(")+4+valToEval[valToEval.find("cos(")+4:].find(")"))]))))))+valToEval[(valToEval.find("cos(")+4+valToEval[valToEval.find("cos(")+4:].find(")"))+1:]
-            elif valToEval.find("tan(")!=-1:
-                valToEval=valToEval[:valToEval.find("tan(")]+str(math.tan(math.radians(float(evalFunction(funcInFunc(valToEval[valToEval.find("tan(")+4:(valToEval.find("tan(")+4+valToEval[valToEval.find("tan(")+4:].find(")"))]))))))+valToEval[(valToEval.find("tan(")+4+valToEval[valToEval.find("tan(")+4:].find(")"))+1:]
-            elif valToEval.find("log(")!=-1:
-                valToEval=valToEval[:valToEval.find("log(")]+str(math.log10(float(evalFunction(funcInFunc(valToEval[valToEval.find("log(")+4:(valToEval.find("log(")+4+valToEval[valToEval.find("log(")+4:].find(")"))])))))+valToEval[(valToEval.find("log(")+4+valToEval[valToEval.find("log(")+4:].find(")"))+1:]
-            elif valToEval.find("ln(")!=-1:
-                valToEval=valToEval[:valToEval.find("ln(")]+str(math.log(float(evalFunction(funcInFunc(valToEval[valToEval.find("ln(")+3:(valToEval.find("ln(")+3+valToEval[valToEval.find("ln(")+3:].find(")"))])))))+valToEval[(valToEval.find("ln(")+3+valToEval[valToEval.find("ln(")+3:].find(")"))+1:]
-            elif valToEval.find("!")!=-1:
-                for op in range(valToEval.find("!"),-1,-1):
-                    if valToEval[op]=="*" or valToEval[op]=="/" or valToEval[op]=="+" or valToEval[op]=="-":
-                        valToEval=valToEval[:op+1]+fact(int(valToEval[op+1:valToEval.find("!")]))+valToEval[valToEval.find("!")+1:]
-                        break
-                    elif op==0:
-                        valToEval=fact(int(valToEval[0:valToEval.find("!")]))+valToEval[valToEval.find("!")+1:]
-            else:
-                bool1=False
-    else:
-        valToEval=float(evalFunction(valToEval))
-    return str(valToEval).rstrip(")")
 
 class CalcLayout(FloatLayout):
     Window.clearcolor = (1, 1, 1, 1)
@@ -88,10 +62,10 @@ class CalcLayout(FloatLayout):
     title_text=StringProperty()
     def __init__(self):
         super(CalcLayout, self).__init__()
+        changeLog=open("ota.txt","r+")
+        file_data=changeLog.read()
+        changeLog.close()
         try:
-            changeLog=open("ota.txt","r+")
-            file_data=changeLog.read()
-            changeLog.close()
             ota_check=urllib2.urlopen("https://raw.githubusercontent.com/Jack839/Calculator-App/master/ota.txt")
             read_data=ota_check.read()
             if float(read_data[1:4])>__version__:
@@ -101,18 +75,20 @@ class CalcLayout(FloatLayout):
                 self.title_text="Update Available: v"+read_data[1:4]
                 self.update_text=read_data[6:-3]
                 self.ids.updatePop.open()
-            elif int(file_data[-2])==0:
+        except Exception:
+            pass
+        finally:
+            if int(file_data[-2])==0:
                 file_data=file_data[:-2]+str(int(file_data[-2])+1)+"\n"
                 ota=open("ota.txt","w+")
                 ota.write(file_data)
                 ota.close()
                 self.title_text="ChangeLogs"
-                self.update_text=file_data[6:-3]
+                self.update_text=file_data[125:-3]
                 self.ids.updatePop.open()
             else:
                 self.remove_widget(self.ids.updatePop)
-        except Exception:
-            self.remove_widget(self.ids.updatePop)
+        
     def valEnter(self,inputVal):
         if self.data_text=="Error":
             self.data_text=inputVal
@@ -140,13 +116,20 @@ class CalcLayout(FloatLayout):
                     self.data_text=self.data_text[0:-1]
     def internetActivity(self,Url):
         webbrowser.open(Url)
-    def update_padding(self, text_input, *args):
-        text_width = text_input._get_text_width(text_input.text,text_input.tab_width,text_input._label_cached)
-        text_input.padding_x = (text_input.width - text_width)/2
     def calc(self,valToEval):
         if len(valToEval)>0:
+            bool1=True
+            while bool1:
+                if valToEval.find("!")!=-1:
+                    for op in range(valToEval.find("!"),-1,-1):
+                        if valToEval[op]=="*" or valToEval[op]=="/" or valToEval[op]=="+" or valToEval[op]=="-":
+                            valToEval=valToEval[:op+1]+fact(int(valToEval[op+1:valToEval.find("!")]))+valToEval[valToEval.find("!")+1:]
+                            break
+                        elif op==0:
+                            valToEval=fact(int(valToEval[0:valToEval.find("!")]))+valToEval[valToEval.find("!")+1:]
+                else:
+                    bool1=False
             try:
-                valToEval=funcInFunc(valToEval)
                 self.data_text=evalFunction(valToEval)
             except:
                 self.data_text="Error"

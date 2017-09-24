@@ -63,13 +63,13 @@
         Label:
             size_hint_x: 0.7
     PageLayout:
-        border: "20dp"
+        border: "30dp"
         swipe_threshold: 0.000001
         GridLayout:
             rows: 2
             BoxLayout:
                 pos_hint: {"top":1}
-                size_hint_y:0.5
+                size_hint_y:0.606
                 padding: ["20dp","40dp",0,0]
                 ScrollView:
                     bar_color: 1,1,1,0
@@ -161,7 +161,7 @@
                 anchor_y: "top"
                 anchor_x: "right"
             BoxLayout:
-                size_hint_y: 0.5
+                size_hint_y: 0.4125
                 CalcButton2:
                     text: "    sin"
                     on_release: cal.valEnter(self.text[4:]+"(")
@@ -172,7 +172,7 @@
                     text: "    tan"
                     on_release: cal.valEnter(self.text[4:]+"(")
             BoxLayout:
-                size_hint_y: 0.5
+                size_hint_y: 0.4125
                 CalcButton2:
                     text: "    ln"
                     on_release: cal.valEnter(self.text[4:]+"(")
@@ -183,7 +183,7 @@
                     text: "    !"
                     on_release: cal.valEnter(self.text[4:])
             BoxLayout:
-                size_hint_y: 0.5
+                size_hint_y: 0.4125
                 CalcButton2:
                     text: "    π"
                     on_release: cal.valEnter(str(math.pi))
@@ -194,7 +194,7 @@
                     text: "    ^"
                     on_release: cal.valEnter("**")
             BoxLayout:
-                size_hint_y: 0.5
+                size_hint_y: 0.4125
                 CalcButton2:
                     text: "    ("
                     on_release: cal.valEnter(self.text[4:])
