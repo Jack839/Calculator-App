@@ -35,18 +35,31 @@ __version__=2.5
 def evalFunction(valToEval):
     b=""
     k="+"
-    for j in range(0,6):
+    for j in range(0,7):
         for i in range(0,len(valToEval.split(k))):
             if i==len(valToEval.split(k))-1:
-                b+=valToEval.split(k)[i].lstrip("0")
+                a=valToEval.split(k)[i].lstrip("0")
+                try:
+                    if (a!=valToEval.split(k)[i]) and (a[0]=="+" or a[0]=="-" or a[0]=="*" or a[0]=="/" or a[0]=="%" or a[0]==")" or a[0]=="("):
+                        a="0"+a
+                except:
+                    pass
+                b+=a
             else:
-                b+=valToEval.split(k)[i].lstrip("0")+k        
+                a=valToEval.split(k)[i].lstrip("0")
+                try:
+                    if (a!=valToEval.split(k)[i]) and (a[0]=="+" or a[0]=="-" or a[0]=="*" or a[0]=="/" or a[0]=="%" or a[0]==")" or a[0]=="("):
+                        a="0"+a
+                except:
+                    pass
+                b+=a+k        
         valToEval,b=b,""
         if j==0 and valToEval.find("-")!=-1:k="-"        
         elif j==1 and valToEval.find("*")!=-1:k="*"
         elif j==2 and valToEval.find("/")!=-1:k="/"
         elif j==3 and valToEval.find("%")!=-1:k="%"
-        elif j==4 and valToEval.find("(")!=-1:k="("
+        elif j==4 and valToEval.find(")")!=-1:k=")"
+        elif j==5 and valToEval.find("(")!=-1:k="("
     return str(eval(compile(valToEval, '<string>', 'eval', __future__.division.compiler_flag),{'sin': sin,'cos': cos,'tan': tan,'log': log10,'ln': log,'pi': pi}))
 
 def fact(x):
