@@ -13,7 +13,7 @@ package.domain = org.jack.calckivy
 source.dir = /home/jack/Desktop/Kivy-Projects/Calculator-App/
 
 # (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,jpg,kv,atlas,ttf,txt
+source.include_exts = py,png,jpg,kv,atlas,ttf,txt,dat
 
 # (list) List of inclusions using pattern matching
 source.include_patterns = res/*.png
@@ -28,7 +28,7 @@ source.include_patterns = res/*.png
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 2.5
+version = 2.6
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
@@ -75,7 +75,7 @@ osx.kivy_version = 1.9.1
 #
 
 # (bool) Indicate if the application should be fullscreen or not
-fullscreen = 0
+fullscreen = 1
 
 # (string) Presplash background color (for new android toolchain)
 # Supported formats are: #RRGGBB #AARRGGBB or one of the following names:
@@ -120,7 +120,7 @@ android.permissions = INTERNET
 #android.entrypoint = org.renpy.android.PythonActivity
 
 # (list) Pattern to whitelist for the whole project
-#android.whitelist =
+#android.whitelist = 
 
 # (str) Path to a custom whitelist file
 #android.whitelist_src =

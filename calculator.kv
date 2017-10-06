@@ -1,4 +1,5 @@
-#: import math math
+#kV File
+
 <CalcButton@Button>:
     #Custom Button Design 1
     font_size: 70
@@ -23,7 +24,7 @@
     ModalView:
         id: pop
         background: "res/white_back.png"
-        size_hint_y: 0.318
+        size_hint_y: 0.313
         separator_height: 0
         pos_hint: {'right': 1, 'top': 0.3}
         BoxLayout:
@@ -45,6 +46,7 @@
                 color: 81/255.0,148/255.0,1,1
                 background_normal: ""
                 background_color: 1,1,1,1
+                background_down: "res/trans_back.png"
                 on_release: cal.internetActivity("https://github.com/Jack839/Calculator-App")
     BoxLayout:
         padding: 0,10,0,0
@@ -81,6 +83,7 @@
                         id: input_data
                         font_name: "res/font_roboto_thin.ttf"
                         text: cal.data_text
+                        markup: True
                         color: 116/255.0,116/255.0,116/255.0,1
                         font_size: 120
                         size_hint_x: None
@@ -156,45 +159,61 @@
                         on_release: cal.valEnter(self.text)
         GridLayout:
             size_hint_y: 0.9
-            rows: 5
+            rows: 6
             AnchorLayout:
                 anchor_y: "top"
                 anchor_x: "right"
             BoxLayout:
-                size_hint_y: 0.4125
+                size_hint_y: 0.33
                 CalcButton2:
-                    text: "    sin"
+                    text: "    INV"
+                    on_release: cal.inverseMode()
+                CalcButton2:
+                    text: cal.button_angle_text
+                    on_release: cal.angleChange()
+                CalcButton2:
+                    text: "    √"
+                    on_release: cal.valEnter(u"\u221A"+"(")
+            BoxLayout:
+                size_hint_y: 0.33
+                CalcButton2:
+                    text: cal.button_sin_text
+                    markup: True
                     on_release: cal.valEnter(self.text[4:]+"(")
                 CalcButton2:
-                    text: "    cos"
+                    text: cal.button_cos_text
+                    markup: True
                     on_release: cal.valEnter(self.text[4:]+"(")
                 CalcButton2:
-                    text: "    tan"
+                    text: cal.button_tan_text
+                    markup: True
                     on_release: cal.valEnter(self.text[4:]+"(")
             BoxLayout:
-                size_hint_y: 0.4125
+                size_hint_y: 0.33
                 CalcButton2:
-                    text: "    ln"
-                    on_release: cal.valEnter(self.text[4:]+"(")
+                    text: cal.button_ln_text
+                    markup: True
+                    on_release: cal.inverseMode(2)
                 CalcButton2:
-                    text: "    log"
-                    on_release: cal.valEnter(self.text[4:]+"(")
+                    text: cal.button_log_text
+                    markup: True
+                    on_release: cal.inverseMode(1)
                 CalcButton2:
                     text: "    !"
                     on_release: cal.valEnter(self.text[4:])
             BoxLayout:
-                size_hint_y: 0.4125
+                size_hint_y: 0.33
                 CalcButton2:
                     text: "    π"
-                    on_release: cal.valEnter(str(math.pi))
+                    on_release: cal.valEnter(u"\u03C0")
                 CalcButton2:
                     text: "    e"
-                    on_release: cal.valEnter(str(math.exp(1)))
+                    on_release: cal.valEnter(self.text[4])
                 CalcButton2:
                     text: "    ^"
-                    on_release: cal.valEnter("**")
+                    on_release: cal.valEnter(self.text[4])
             BoxLayout:
-                size_hint_y: 0.4125
+                size_hint_y: 0.33
                 CalcButton2:
                     text: "    ("
                     on_release: cal.valEnter(self.text[4:])
