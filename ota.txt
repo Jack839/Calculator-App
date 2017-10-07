@@ -13,6 +13,7 @@ ChangeLog(v2.6):
     8)Update Check is now done twice a day.
     9)Updated AppIcon.
     10)Updated Splash Screen(presplash.png).
+    11)Fixed Update not showing issue.
 
 ChangeLog(v2.5):
     1)Updated Version To v2.5.

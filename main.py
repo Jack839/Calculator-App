@@ -18,7 +18,6 @@ from kivy.core.window import Window
 from kivy.uix.scrollview import ScrollView
 from kivy.network.urlrequest import UrlRequest
 from kivy.graphics.context_instructions import Color
-from kivy.graphics.vertex_instructions import Rectangle
 
 #Window.size = (570, 720)
 
@@ -198,12 +197,12 @@ class CalcLayout(FloatLayout):
             except Exception:
                 bool6=False
             if float(read_data[1:4])>__version__ and bool6:
-                    ota=open("ota.txt","w+")
-                    ota.write(read_data)
-                    ota.close()
-                    self.title_text="Update Available: v"+read_data[1:4]
-                    self.update_text=read_data[6:-3]
-                    self.ids.updatePop.open()
+                ota=open("ota.txt","w+")
+                ota.write(read_data)
+                ota.close()
+                self.title_text="Update Available: v"+read_data[1:4]
+                self.update_text=read_data[6:read_data.find("ChangeLog(v2.6):")]
+                self.ids.updatePop.open()
             elif file_data[-2]=="0" and float(read_data[1:4])==__version__:
                 file_data=file_data[:-2]+str(int(file_data[-2])+1)+"\n"
                 ota=open("ota.txt","w+")
