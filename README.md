@@ -6,5 +6,3 @@ App Download Folder(Every Version): https://drive.google.com/open?id=0Bzs0vaxTnY
 Note: 
 
       -App Layout is made to work perfect on android only.
-
-      -Most of icons are taken from https://icons8.com.
