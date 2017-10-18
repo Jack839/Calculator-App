@@ -1,6 +1,14 @@
-#2.6
+#2.7
 
 [u][color=5194FF][ref=https://drive.google.com/open?id=0Bzs0vaxTnYwEMml1Rm9DeVY5ZVk]Download Folder[/ref][/color][/u]
+
+ChangeLog(v2.7):
+    1)Fixed Zero Error.
+    2)Fixed 'cos' error.
+    3)Switched from '!' to 'fact'.
+    4)Switched to 'e' form for long int.
+    5)Removed multiple '^' symbol allowed.
+    6)Switched to inbuilt factorial funtion.
 
 ChangeLog(v2.6):
     1)Switched To Fullscreen.

@@ -31,34 +31,66 @@ import webbrowser
 import time
 
 #Global Variables
-__version__=2.6
+__version__=2.7
 mode_count=1
 angle_count=1
 
 def zeroChange(valToEval,toFind,toReplace):
-    for indexVal in range(0,len(valToEval)):
-        if valToEval.find(toFind)!=-1:
-            try:
-                if valToEval[indexVal]==toFind:
-                    if valToEval[indexVal-1]=="+" or valToEval[indexVal-1]=="-" or valToEval[indexVal-1]=="/" or valToEval[indexVal-1]=="*" or valToEval[indexVal-1]=="%" or valToEval[indexVal-1]=="(" or valToEval[indexVal-1]==")" or valToEval[indexVal-1]=="^":
-                        for nextIndex in range(indexVal,len(valToEval)):
-                            if valToEval[nextIndex]=="+" or valToEval[nextIndex]=="-" or valToEval[nextIndex]=="/" or valToEval[nextIndex]=="*" or valToEval[nextIndex]=="%" or valToEval[nextIndex]=="(" or valToEval[nextIndex]==")" or valToEval[nextIndex]=="^":
-                                if valToEval[indexVal:nextIndex]!="c":
-                                    if str(eval(valToEval[indexVal:nextIndex]))==toFind:
-                                        valToEval=valToEval[:indexVal]+toReplace+valToEval[nextIndex:]
-                                        break
-                                else:
-                                    if valToEval[indexVal:nextIndex]==toFind:
-                                        valToEval=valToEval[:indexVal]+toReplace+valToEval[nextIndex:]
-                                        break
-            except Exception:
-                pass
+    if toFind=="0":
+        for indexVal in range(0,len(valToEval)):
+            if valToEval.find(toFind)!=-1:
+                try:
+                    if valToEval[indexVal]==toFind:
+                        if valToEval[indexVal-1]=="+" or valToEval[indexVal-1]=="-" or valToEval[indexVal-1]=="/" or valToEval[indexVal-1]=="*" or valToEval[indexVal-1]=="%" or valToEval[indexVal-1]=="(" or valToEval[indexVal-1]==")" or valToEval[indexVal-1]=="^":
+                            for nextIndex in range(indexVal,len(valToEval)):
+                                if valToEval[nextIndex]=="+" or valToEval[nextIndex]=="-" or valToEval[nextIndex]=="/" or valToEval[nextIndex]=="*" or valToEval[nextIndex]=="%" or valToEval[nextIndex]=="(" or valToEval[nextIndex]==")" or valToEval[nextIndex]=="^":
+                                    if valToEval[indexVal:nextIndex]!="c":
+                                        if str(eval(valToEval[indexVal:nextIndex]))==toFind:
+                                            valToEval=valToEval[:indexVal]+toReplace+valToEval[nextIndex:]
+                                            break
+                                    else:
+                                        if valToEval[indexVal:nextIndex]==toFind:
+                                            valToEval=valToEval[:indexVal]+toReplace+valToEval[nextIndex:]
+                                            break
+                except Exception:
+                    pass
+    else:
+        for indexVal in range(0,len(valToEval)):
+            if valToEval[indexVal]==toFind:
+                valToEval=valToEval[:indexVal]+"0"+valToEval[indexVal+1:]
+    if valToEval[0]=="c" or valToEval[0]=="0" or valToEval[-1]=="0" or valToEval[-1]=="c" :
+        for numVal in range(0,len(valToEval)):
+            if valToEval[numVal]=="+" or valToEval[numVal]=="-" or valToEval[numVal]=="*" or valToEval[numVal]=="/" or valToEval[numVal]=="%" or valToEval[numVal]=="^" or valToEval[numVal]=="(" or valToEval[numVal]==")":
+                if valToEval[:numVal]==toFind:
+                    valToEval=toReplace+valToEval[numVal:]
+                    break
+                elif str(float(eval(valToEval[:numVal])))==toFind+".0":
+                    valToEval=toReplace+valToEval[numVal:]
+                    break
+                else:
+                    break
+        for numVal in range(len(valToEval)-1,-1,-1):
+            if valToEval[numVal]=="+" or valToEval[numVal]=="-" or valToEval[numVal]=="*" or valToEval[numVal]=="/" or valToEval[numVal]=="%" or valToEval[numVal]=="^" or valToEval[numVal]=="(" or valToEval[numVal]==")":
+                if valToEval[numVal+1:]==toFind:
+                    valToEval=valToEval[:numVal+1]+toReplace
+                    break
+                elif str(float(eval(valToEval[numVal+1:])))==toFind+".0":
+                    valToEval=valToEval[:numVal+1]+toReplace
+                    break
+                else:
+                    break
     return valToEval
+
+def fact(x):
+    if type(factorial(x))==long:
+        return '{:.8e}'.format(Decimal(factorial(x)))
+    else:
+        return factorial(x)
 
 def evalFunction(valToEval):
     b=""
     l=["+","-","*","/","%","^",")","("]
-    valToEval=zeroChange(valToEval,"0","c")
+    valToEval=zeroChange(valToEval,"0","z")
     checkValToEval=valToEval
     for j in l:
         for i in range(0,len(valToEval.split(j))):        
@@ -67,31 +99,16 @@ def evalFunction(valToEval):
             else:
                 b+=valToEval.split(j)[i].lstrip("0")+j
         valToEval,b=b,""
-    valToEval=zeroChange(valToEval,"c","0")
-    if valToEval[-1]!=checkValToEval[-1] or valToEval[-1]=="c":
-        if valToEval[-1]=="+" or valToEval[-1]=="-" or valToEval[-1]=="*" or valToEval[-1]=="/" or valToEval[-1]=="%" or valToEval[-1]=="^":
-            valToEval+="0"
-        else:
-            valToEval=valToEval[:-1]+"0"
-    if valToEval[0]!=checkValToEval[0] or valToEval[0]=="c":
-        if valToEval[0]=="+" or valToEval[0]=="-" or valToEval[0]=="*" or valToEval[0]=="/" or valToEval[0]=="%" or valToEval[0]=="^":
-            valToEval="0"+valToEval
-        else:
-            valToEval="0"+valToEval[1:]
+    valToEval=zeroChange(valToEval,"z","0")
     valToEval=changeInString(valToEval,True)
-    return str(round(float(eval(compile(valToEval, '<string>', 'eval', __future__.division.compiler_flag),{"sqrt": sqrt, 'log': log10,'ln': log,'pi': pi,"e":e, "rad": radians, "deg": degrees, 'sin': sin,'cos': cos,'tan': tan, "asin": asin,"acos": acos,"atan": atan})),15))
-    
-
-def fact(x):
-    if int(x)==x:
-        x=int(x)
-    if type(x)==float:
-        return str(x)+"/0"
+    finalResult=round(float(eval(compile(valToEval, '<string>', 'eval', __future__.division.compiler_flag),{"sqrt": sqrt, 'log': log10,'ln': log,'pi': pi,"e":e,"fact": fact, "rad": radians, "deg": degrees, 'sin': sin,'cos': cos,'tan': tan, "asin": asin,"acos": acos,"atan": atan})),15)
+    if type(finalResult)==long:
+        finalResult=str('{:.8e}'.format(Decimal(finalResult)))
+    elif str(finalResult).find("e-")!=-1:
+        finalResult=str(format(finalResult, '.8f'))
     else:
-        if type(factorial(x))==long:
-            return str('{:.8e}'.format(Decimal(factorial(x))))
-        else:
-            return str(factorial(x))
+        finalResult=str(finalResult)
+    return finalResult
 
 def bracketValue(strToEval,index,t=0):
     if t==0:
@@ -233,9 +250,9 @@ class CalcLayout(FloatLayout):
         if self.data_text=="[color=F50057]Bad Expression[/color]" or self.data_text=="[color=F50057]Domian Error[/color]" or self.data_text=="[color=F50057]Infinity[/color]" or self.data_text=="[color=F50057]Not Defined[/color]":
             self.data_text=inputVal
         else:
-            if inputVal=="*" or inputVal=="/" or inputVal=="%" or inputVal=="**":
+            if inputVal=="*" or inputVal=="/" or inputVal=="%" or inputVal=="^":
                 if self.data_text !="" :
-                    if self.data_text[len(self.data_text)-1]=="*" or self.data_text[len(self.data_text)-1]=="/" or self.data_text[len(self.data_text)-1]=="+" or self.data_text[len(self.data_text)-1]=="-" or self.data_text[len(self.data_text)-1]=="%" or self.data_text[len(self.data_text)-1]=="**":
+                    if self.data_text[len(self.data_text)-1]=="*" or self.data_text[len(self.data_text)-1]=="/" or self.data_text[len(self.data_text)-1]=="+" or self.data_text[len(self.data_text)-1]=="-" or self.data_text[len(self.data_text)-1]=="%" or self.data_text[len(self.data_text)-1]=="^":
                         self.data_text=self.data_text
                     else:
                         self.data_text+=inputVal
@@ -310,34 +327,6 @@ class CalcLayout(FloatLayout):
 
     def calc(self,valToEval):
         if len(valToEval)>0:
-            bool1=True
-            while bool1:
-                if valToEval.find("!")!=-1:
-                    bool2=True
-                    if valToEval.find("!")!=len(valToEval)-1:
-                        if ord(valToEval[valToEval.find("!")+1])>=48 and ord(valToEval[valToEval.find("!")+1])<=57 :
-                            valToEval+="/0"
-                            bool2=False
-                            bool1=False
-                    if bool2:
-                        if valToEval[valToEval.find("!")-1]==")":
-                            if ord(valToEval[bracketValue(valToEval,valToEval.find("!"))-1])>=48 and ord(valToEval[bracketValue(valToEval,valToEval.find("!"))-1])<=57:
-                                valToEval+="/0"
-                                bool1=False
-                            else:
-                                valToEval=valToEval[:bracketValue(valToEval,valToEval.find("!"))]+str(fact(float(evalFunction(valToEval[bracketValue(valToEval,valToEval.find("!")):valToEval.find("!")]))))+valToEval[valToEval.find("!")+1:]
-                                break
-                        elif valToEval[valToEval.find("!")+1]=="!":
-                            valToEval="FactorialError"
-                        else:
-                            for op in range(valToEval.find("!"),-1,-1):
-                                if valToEval[op]=="*" or valToEval[op]=="/" or valToEval[op]=="+" or valToEval[op]=="-":
-                                    valToEval=valToEval[:op+1]+fact(float(valToEval[op+1:valToEval.find("!")]))+valToEval[valToEval.find("!")+1:]
-                                    break
-                                elif op==0:
-                                    valToEval=fact(float(valToEval[0:valToEval.find("!")]))+valToEval[valToEval.find("!")+1:]
-                else:
-                    bool1=False
             try:
                 bool5=True
                 while bool5:
@@ -357,7 +346,7 @@ class CalcLayout(FloatLayout):
                     self.data_text=str(float(evalFunction(valToEval)))
             except ValueError:
                 self.data_text="[color=F50057]Domian Error[/color]"
-            except TypeError :
+            except TypeError:
                 self.data_text="[color=F50057]Not Defined[/color]"
             except ZeroDivisionError :
                 self.data_text="[color=F50057]Can't Divide By Zero[/color]"
