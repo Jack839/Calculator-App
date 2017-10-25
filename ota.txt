@@ -1,6 +1,11 @@
-#2.7
+#2.8
 
 [u][color=5194FF][ref=https://drive.google.com/open?id=0Bzs0vaxTnYwEMml1Rm9DeVY5ZVk]Download Folder[/ref][/color][/u]
+
+ChangeLog(v2.8):
+    1)Changed string to "z".
+    2)Update check is done at specific time.
+    3)Fixed not scalling of splash screen.
 
 ChangeLog(v2.7):
     1)Fixed Zero Error.

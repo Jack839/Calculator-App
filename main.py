@@ -22,7 +22,6 @@ from kivy.graphics.context_instructions import Color
 #Window.size = (570, 720)
 
 #Other Imports
-import android
 from math import *
 from decimal import *
 import __future__
@@ -31,7 +30,7 @@ import webbrowser
 import time
 
 #Global Variables
-__version__=2.7
+__version__=2.8
 mode_count=1
 angle_count=1
 
@@ -58,7 +57,7 @@ def zeroChange(valToEval,toFind,toReplace):
         for indexVal in range(0,len(valToEval)):
             if valToEval[indexVal]==toFind:
                 valToEval=valToEval[:indexVal]+"0"+valToEval[indexVal+1:]
-    if valToEval[0]=="c" or valToEval[0]=="0" or valToEval[-1]=="0" or valToEval[-1]=="c" :
+    if valToEval[0]=="z" or valToEval[0]=="0" or valToEval[-1]=="0" or valToEval[-1]=="z" :
         for numVal in range(0,len(valToEval)):
             if valToEval[numVal]=="+" or valToEval[numVal]=="-" or valToEval[numVal]=="*" or valToEval[numVal]=="/" or valToEval[numVal]=="%" or valToEval[numVal]=="^" or valToEval[numVal]=="(" or valToEval[numVal]==")":
                 if valToEval[:numVal]==toFind:
@@ -198,15 +197,10 @@ class CalcLayout(FloatLayout):
         super(CalcLayout, self).__init__()
         self.inverseMode()
         self.angleChange()
-        timeCheckFile=open("time_check.dat","r+")
-        timeCheckData=timeCheckFile.read()
-        timeCheckFile.seek(0,0)
-        initialCheck=timeCheckData[:9]
-        lastTimeUpdateCheck=timeCheckFile.read(2)
         changeLog=open("ota.txt","r+")
         file_data=changeLog.read()
         changeLog.close()
-        if initialCheck=="EmptyFile" or fabs(float(lastTimeUpdateCheck)-float(time.ctime()[11:13]))>=12:
+        if file_data[-2]=="0" or int(time.ctime()[11:13])>=10 or int(time.ctime()[11:13])>=18:
             try:
                 ota_check=urllib2.urlopen("https://raw.githubusercontent.com/Jack839/Calculator-App/master/ota.txt")
                 read_data=ota_check.read()
@@ -230,22 +224,9 @@ class CalcLayout(FloatLayout):
                 self.ids.updatePop.open()
             else:
                 self.remove_widget(self.ids.updatePop)
-            timeCheckFile=open("time_check.dat","w")
-            timeCheckFile.write(time.ctime()[11:13])
-            timeCheckFile.close()
         else:
-            if file_data[-2]=="0":
-                file_data=file_data[:-2]+str(int(file_data[-2])+1)+"\n"
-                ota=open("ota.txt","w+")
-                ota.write(file_data)
-                ota.close()
-                self.title_text="ChangeLogs"
-                self.update_text=file_data[125:-3]
-                self.ids.updatePop.open()
-            else:
-                self.remove_widget(self.ids.updatePop)
-            
-
+            self.remove_widget(self.ids.updatePop)
+                
     def valEnter(self,inputVal):
         if self.data_text=="[color=F50057]Bad Expression[/color]" or self.data_text=="[color=F50057]Domian Error[/color]" or self.data_text=="[color=F50057]Infinity[/color]" or self.data_text=="[color=F50057]Not Defined[/color]":
             self.data_text=inputVal

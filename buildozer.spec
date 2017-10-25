@@ -10,7 +10,7 @@ package.name = Calculator
 package.domain = org.jack.calckivy
 
 # (str) Source code where the main.py live
-source.dir = /home/jack/Desktop/Kivy-Projects/Calculator-App/
+source.dir = /home/jack/Desktop/Python-Projects/Calculator-App/
 
 # (list) Source files to include (let empty to include all the files)
 source.include_exts = py,png,jpg,kv,atlas,ttf,txt,dat
@@ -28,7 +28,7 @@ source.include_patterns = res/*.png
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 2.6
+version = 2.8
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
@@ -47,6 +47,7 @@ requirements = android,openssl,pyopenssl,kivy
 
 # (str) Presplash of the application
 presplash.filename = res/presplash.png
+android.meta_data = presplash-fit=width
 
 # (str) Icon of the application
 icon.filename = res/icon.png
