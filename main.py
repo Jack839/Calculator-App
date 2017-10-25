@@ -206,6 +206,7 @@ class CalcLayout(FloatLayout):
                 read_data=ota_check.read()
                 bool6=True
             except Exception:
+                read_data=" 000 "
                 bool6=False
             if float(read_data[1:4])>__version__ and bool6:
                 ota=open("ota.txt","w+")
