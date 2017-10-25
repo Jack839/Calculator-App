@@ -215,7 +215,7 @@ class CalcLayout(FloatLayout):
                 self.title_text="Update Available: v"+read_data[1:4]
                 self.update_text=read_data[6:read_data.find("ChangeLog(v2.6):")]
                 self.ids.updatePop.open()
-            elif file_data[-2]=="0" and float(read_data[1:4])==__version__:
+            elif file_data[-2]=="0" and float(file_data[1:4])==__version__:
                 file_data=file_data[:-2]+str(int(file_data[-2])+1)+"\n"
                 ota=open("ota.txt","w+")
                 ota.write(file_data)
