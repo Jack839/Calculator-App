@@ -47,7 +47,6 @@ requirements = android,openssl,pyopenssl,kivy
 
 # (str) Presplash of the application
 presplash.filename = res/presplash.png
-android.meta_data = presplash-fit=width
 
 # (str) Icon of the application
 icon.filename = res/icon.png

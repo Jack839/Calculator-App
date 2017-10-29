@@ -3,9 +3,9 @@
 [u][color=5194FF][ref=https://drive.google.com/open?id=0Bzs0vaxTnYwEMml1Rm9DeVY5ZVk]Download Folder[/ref][/color][/u]
 
 ChangeLog(v2.8):
-    1)Changed string to "z".
-    2)Update check is done at specific time.
-    3)Fixed not scalling of splash screen.
+    1)Fixed some bugs.
+    2)Update check is now done at specific time.
+    3)Removed links from update notification.
 
 ChangeLog(v2.7):
     1)Fixed Zero Error.
@@ -17,7 +17,7 @@ ChangeLog(v2.7):
 
 ChangeLog(v2.6):
     1)Switched To Fullscreen.
-    2)Added 5 row for inverse & Deg function.
+    2)Added more row for inverse & Deg function.
     3)Updated Python EvalFunction.
     4)Added Exponential form for big number.
     5)Added Inverse and RAD/DEG Fucntion.
@@ -100,6 +100,6 @@ ChangeLog(v1.0.1):
     5)Removed unnecessary importing.
 
 ChangeLog(v1.0):
-    1)Initial BringUp.
+    1)Initial Build.
 
 #1

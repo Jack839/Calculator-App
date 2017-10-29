@@ -1,6 +1,5 @@
 #Kivy Imports
 from kivy.app import App
-from kivy.lang import Builder
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
@@ -8,16 +7,13 @@ from kivy.uix.pagelayout import PageLayout
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
-from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
 from kivy.properties import StringProperty
-from kivy.uix.dropdown import DropDown
 from kivy.uix.widget import Widget
 from kivy.uix.modalview import ModalView
-from kivy.core.window import Window
 from kivy.uix.scrollview import ScrollView
 from kivy.network.urlrequest import UrlRequest
-from kivy.graphics.context_instructions import Color
+#from kivy.lang import Builder
 
 #Window.size = (570, 720)
 
@@ -200,7 +196,7 @@ class CalcLayout(FloatLayout):
         changeLog=open("ota.txt","r+")
         file_data=changeLog.read()
         changeLog.close()
-        if file_data[-2]=="0" or int(time.ctime()[11:13])>=10 or int(time.ctime()[11:13])>=18:
+        if file_data[-2]=="0" or (int(time.ctime()[11:13])>=10 and int(time.ctime()[11:13])<=12) or (int(time.ctime()[11:13])>=18 and int(time.ctime()[11:13])<=20):
             try:
                 ota_check=urllib2.urlopen("https://raw.githubusercontent.com/Jack839/Calculator-App/master/ota.txt")
                 read_data=ota_check.read()
@@ -213,7 +209,7 @@ class CalcLayout(FloatLayout):
                 ota.write(read_data)
                 ota.close()
                 self.title_text="Update Available: v"+read_data[1:4]
-                self.update_text=read_data[6:read_data.find("ChangeLog(v2.6):")]
+                self.update_text=read_data[125:read_data.find("ChangeLog(v"+str(__version__)+"):")]
                 self.ids.updatePop.open()
             elif file_data[-2]=="0" and float(file_data[1:4])==__version__:
                 file_data=file_data[:-2]+str(int(file_data[-2])+1)+"\n"
